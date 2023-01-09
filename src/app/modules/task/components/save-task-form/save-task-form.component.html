@@ -1,0 +1,42 @@
+<form
+  class="add-task-form"
+  [class.mat-elevation-z2]="true"
+  [formGroup]="saveTaskForm"
+  (submit)="handleFormSubmit()"
+>
+  <mat-form-field class="add-task-form-input" appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+    <mat-error *ngIf="title?.hasError('required')"
+      >This field is <strong>required</strong></mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field class="add-task-form-input" appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      class="textarea-input"
+      formControlName="description"
+    ></textarea>
+    <mat-error *ngIf="description?.hasError('required')"
+      >This field is <strong>required</strong></mat-error
+    >
+  </mat-form-field>
+
+  <mat-radio-group class="add-task-radio-container" formControlName="type">
+    <label>Task type:</label>
+    <mat-radio-button value="development">Development</mat-radio-button>
+    <mat-radio-button value="design">Design</mat-radio-button>
+  </mat-radio-group>
+
+  <button
+    mat-raised-button
+    class="add-task-form-button"
+    color="primary"
+    type="submit"
+    [disabled]="!saveTaskForm.valid"
+  >
+    SUBMIT
+  </button>
+</form>

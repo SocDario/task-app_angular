@@ -1,0 +1,16 @@
+<div class="edit-task-page">
+  <h1 class="edit-task-page-header">Edit Task</h1>
+  <button
+    mat-mini-fab
+    class="back-button"
+    color="accent"
+    matTooltip="Go back"
+    routerLink="/list"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <save-task-form
+    [taskToUpdate]="task"
+    (formSubmited)="handleFormSubmit($event)"
+  ></save-task-form>
+</div>

@@ -1,0 +1,21 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.login-form-heading {
+  margin: 20px 0;
+}
+
+.login-form-input {
+  margin: 5px 0;
+}
+
+.login-form-button {
+  margin: 20px 0;
+  height: 50px;
+}

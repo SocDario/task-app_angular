@@ -1,0 +1,139 @@
+<mat-drawer-container class="list-drawer-container">
+  <mat-drawer-content class="content-container">
+    <div class="main-container">
+      <h1 class="list-drawer-heading">My Task App</h1>
+      <div class="list-button-container">
+        <button
+          mat-mini-fab
+          color="accent"
+          matTooltip="Add Task"
+          routerLink="/add"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          color="accent"
+          matTooltip="Sign Out"
+          (click)="handleSignOut()"
+        >
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </div>
+    <ng-container
+      *ngIf="inProgressTasks?.length || completedTasks?.length; else emptyState"
+    >
+      <div class="tasks-content-container" cdkDropListGroup>
+        <div class="task-container">
+          <h2 class="task-container-header">Tasks In Progress</h2>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="inProgressTasks!"
+            class="task-list"
+            (cdkDropListDropped)="dropCard($event)"
+          >
+            <app-task-card
+              class="task-card"
+              *ngFor="let task of inProgressTasks!"
+              [task]="task"
+              (taskDelete)="handleTaskDelete($event)"
+              [cdkDragData]="task"
+              cdkDrag
+            ></app-task-card>
+          </div>
+        </div>
+
+        <div class="task-container">
+          <h2 class="task-container-header">Completed Tasks</h2>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="completedTasks!"
+            class="task-list"
+            (cdkDropListDropped)="dropCard($event)"
+          >
+            <app-task-card
+              class="task-card"
+              *ngFor="let task of completedTasks"
+              [task]="task"
+              (taskDelete)="handleTaskDelete($event)"
+              [cdkDragData]="task"
+              cdkDrag
+            ></app-task-card>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #emptyState>
+      <div class="empty-state-container">
+        <p class="empty-state-label">There are currently no tasks available.</p>
+        <button
+          mat-raised-button
+          class="back-button"
+          color="accent"
+          matTooltip="Add Task"
+          routerLink="/add"
+        >
+          <mat-icon>add</mat-icon>
+          <span>Add Task</span>
+        </button>
+      </div>
+    </ng-template>
+  </mat-drawer-content>
+
+  <mat-drawer class="list-sidebar" mode="side" position="end" opened>
+    <h1 class="list-sidebar-header">Tasks Progress</h1>
+    <ng-container
+      *ngIf="
+        inProgressTasks?.length || completedTasks?.length;
+        else emptyProgress
+      "
+    >
+      <div
+        class="progress-container"
+        *ngIf="handleProgressShown('development')"
+      >
+        <div class="progress-container-heading">
+          <h2 class="progress-type-header">Development</h2>
+          <p>
+            {{
+              inProgressTasks!
+                | taskProgressFormat: completedTasks!:'development'
+            }}
+          </p>
+        </div>
+        <mat-progress-bar
+          class="progress-bar-color-first progress-bar-background"
+          mode="determinate"
+          [value]="
+            inProgressTasks!
+              | taskProgressCalculation: completedTasks!:'development'
+          "
+        ></mat-progress-bar>
+      </div>
+
+      <div class="progress-container" *ngIf="handleProgressShown('design')">
+        <div class="progress-container-heading">
+          <h2 class="progress-type-header">Design</h2>
+          <p>
+            {{
+              inProgressTasks! | taskProgressFormat: completedTasks!:'design'
+            }}
+          </p>
+        </div>
+        <mat-progress-bar
+          class="progress-bar-color-second progress-bar-background"
+          mode="determinate"
+          [value]="
+            inProgressTasks! | taskProgressCalculation: completedTasks!:'design'
+          "
+        ></mat-progress-bar>
+      </div>
+    </ng-container>
+    <ng-template #emptyProgress>
+      <p>Add task to see progress</p>
+    </ng-template>
+  </mat-drawer>
+</mat-drawer-container>

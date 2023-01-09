@@ -1,0 +1,120 @@
+.list-drawer-container {
+  width: 100%;
+  height: 100%;
+  background-color: #ebf0f6;
+}
+
+.content-container {
+  padding: 40px 20px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-drawer-heading {
+  font-size: xx-large;
+}
+
+.list-button-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 15px;
+  margin-right: 40px;
+}
+
+.list-sidebar {
+  width: 400px;
+  padding: 50px 20px;
+  background-color: #ebf0f6;
+  border-left: 2px solid #e0e6ee;
+}
+
+.list-sidebar-header {
+  font-size: x-large;
+  margin-bottom: 40px;
+}
+
+.progress-container {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.progress-container-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-type-header {
+  font-size: large;
+}
+
+.progress-bar-color-first ::ng-deep .mat-progress-bar-fill::after {
+  background-color: #acc5e6;
+}
+
+.progress-bar-color-second ::ng-deep .mat-progress-bar-fill::after {
+  background-color: #a9e6a1;
+}
+
+.progress-bar-background ::ng-deep .mat-progress-bar-buffer {
+  background: #e2e2ea;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.empty-state-label {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tasks-content-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-top: 50px;
+}
+
+.task-container {
+  min-width: 400px;
+}
+
+.task-container-header {
+  text-align: center;
+  font-size: large;
+  margin-bottom: 30px;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.task-card {
+  display: flex;
+  background: transparent;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.task-list.cdk-drop-list-dragging .task-card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

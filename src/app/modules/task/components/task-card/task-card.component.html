@@ -1,0 +1,52 @@
+<mat-card class="task-card">
+  <div class="task-header">
+    <div>
+      <mat-card-title class="task-heading-text">{{
+        task?.title
+      }}</mat-card-title>
+      <mat-card-subtitle
+        class="task-type-container"
+        [ngClass]="
+          task?.type == 'development' ? 'task-type-first' : 'task-type-second'
+        "
+        >{{ task?.type }}</mat-card-subtitle
+      >
+    </div>
+    <div class="task-action-container">
+      <button
+        mat-fab
+        class="task-action-button"
+        color="primary"
+        matTooltip="Edit Task"
+        routerLink="/edit/{{ task?.id! }}"
+        *ngIf="!task?.isCompleted"
+      >
+        <mat-icon class="task-action-button-icon">edit</mat-icon>
+      </button>
+
+      <button
+        mat-fab
+        class="task-action-button"
+        color="warn"
+        matTooltip="Delete Task"
+        (click)="handleTaskDelete(task?.id!)"
+      >
+        <mat-icon class="task-action-button-icon">delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-card-content>
+    <p class="task-description-text">
+      {{ task?.description }}
+    </p>
+    <p class="task-created-timestamp">
+      Created at: {{ task?.createdTimestamp | date: 'medium' }}
+    </p>
+    <p class="task-updated-timestamp" *ngIf="task?.updatedTimestamp">
+      Updated at: {{ task?.updatedTimestamp | date: 'medium' }}
+    </p>
+    <p class="task-updated-timestamp" *ngIf="task?.completedTimestamp">
+      Completed at: {{ task?.completedTimestamp | date: 'medium' }}
+    </p>
+  </mat-card-content>
+</mat-card>

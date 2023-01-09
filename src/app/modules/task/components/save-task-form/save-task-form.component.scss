@@ -1,0 +1,27 @@
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.add-task-radio-container {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 10px;
+}
+
+.add-task-form-input {
+  margin: 5px 0;
+}
+
+.textarea-input {
+  max-height: 250px;
+}
+
+.add-task-form-button {
+  margin: 20px 0;
+  height: 50px;
+}

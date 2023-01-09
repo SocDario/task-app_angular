@@ -1,0 +1,7 @@
+<app-list-layout
+  [completedTasks]="completedTasks"
+  [inProgressTasks]="inProgressTasks"
+  (tasksUpdated)="handleTasksUpdate($event)"
+  (taskDelete)="handleTaskDelete($event)"
+  (signOut)="handleSignOut()"
+></app-list-layout>
